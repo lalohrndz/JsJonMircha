@@ -1,0 +1,51 @@
+//Para compilar el archivo .sass se debe de ingresar a la cmd y escribir:
+        
+//        [nombre de archivo de entrada]
+//         |
+//    sass main.sass:main.css
+//                   |
+//                  [Nombre de archivo de salida]
+
+//En este caso se haría la compilación del archivo .sass a un .css mapeando sus cambios.
+
+//En caso de querer mantener la compilación activa el comando debe de tener la bandera de "--watch":
+
+//    sass --watch main.sass:main.css
+
+//Así los cambios que se realicen en el documento .sass se compilarán en automático al .css
+
+//Para detener esta la compilación activa se debe de escribir en la consola "Crl-C"
+
+
+//****************************************************************
+//Importar archios de las variables
+//Al guardar un archivo que va a ser para importación se debe de agregar un guin bajo al inicio. Estos archivos de importanción dentro del main.sass SI deben de tener un orden
+//****************************************************************
+@import _variables
+
+body
+    background-color: $colorNaranja
+
+h1
+    color: $colorBlanco
+
+//****************************************************************
+//Anidación de selecores
+//****************************************************************
+
+.contenedor
+    background-color: $colorBlanco
+    box-shadow: 5px 4px 9px $colorNegro
+    +border-radius(8px)
+    height: 5em
+    &:hover
+        background-color: $colorGris
+    p
+        padding-top: 1em
+        text-align: center
+
+//****************************************************************
+//Extenciones
+//****************************************************************
+.contenedor2
+    @extend .contenedor

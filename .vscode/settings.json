@@ -1,0 +1,16 @@
+{
+    "editor.wordWrap": "on",
+    "emmet.syntaxProfiles": {
+        "javascript":"html"
+    },
+    "emmet.includeLanguages":{
+        "javascript":"html"
+    },
+    "files.autoSave":"onFocusChange",
+    "editor.formatOnPaste":true,
+    "editor.formatOnSave":true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
