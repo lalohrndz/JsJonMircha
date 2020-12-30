@@ -210,15 +210,174 @@ console.clear();
 
 /* 9) Programa una función que obtenga un numero aleatorio entre 501 y 600. */
 //********  EJERCICIO 9 ********/
-
+(function randomize(numMin = 501, numMax = 600) {
+  let result = Math.ceil(Math.random() * (numMax - numMin) + numMin);
+  console.log(result);
+})();
+console.clear();
 //********  EJERCICIO 9 FIN********/
 
 /* 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true. */
+//********  EJERCICIO 10********/
+const capicua = (n = "") => {
+  let nString = n.toString();
+  let nReverse = nString.split("").reverse().join("");
+  if (nString == nReverse) {
+    console.log(`El número ${n} es capicúa`);
+  } else {
+    console.log(`El número ${n} NO es capicúa`);
+  }
+};
+capicua(2002);
+console.clear();
 //********  EJERCICIO 10 FIN********/
-
-//********  EJERCICIO 10 FIN********/
-
 /* 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120. */
+//********  EJERCICIO 11 ********/
+const factorial = (n = "") => {
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result = result * i;
+    console.log(`El factorial de ${i} es: ${result}`);
+  }
+};
+factorial(5);
+console.clear();
 //********  EJERCICIO 11 FIN********/
 
-//********  EJERCICIO 11 FIN********/
+/* 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true. */
+//********  EJERCICIO 12********/
+const pariente = (n = "") => {
+  let result = n % 2;
+  if (result === 1) {
+    return true;
+  } else {
+    return false;
+  }
+};
+console.log(pariente(7));
+console.clear();
+//********  EJERCICIO 12 FIN********/
+
+/* 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar. */
+//********  EJERCICIO 13********/
+const kesoy = (n = 0) => {
+  let result = n % 2;
+  if (result === 1) {
+    return `El número ${n} es impar`;
+  } else {
+    return `El número ${n} es par`;
+  }
+};
+console.log(kesoy(30));
+console.clear();
+//********  EJERCICIO 13 FIN********/
+
+/* 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F. */
+//********  EJERCICIO 14********/
+const temperature = (g = "", ng = "") => {
+  let grados = g;
+  let tipoDeGrado = ng;
+  let tp = tipoDeGrado.toLowerCase();
+
+  let result;
+  switch (tp) {
+    case !grados:
+      console.log("Debe de ingresar el tipo de grados para convertir");
+      break;
+
+    case !tipoDeGrado:
+      console.log("Debe de ingresar los grados a convertir");
+      break;
+
+    case "c":
+      result = grados * 1.8 + 32;
+      console.log(
+        `${g} grados celsius es equivalente a ${result} grados fahrenheit`
+      );
+      break;
+
+    case "f":
+      result = ((grados - 32) * 5) / 9;
+      console.log(
+        `${g} grados fahrenheit es equivalente a ${result} grados celsius`
+      );
+      break;
+  }
+};
+temperature(3, "c");
+console.clear();
+//********  EJERCICIO 14 FIN********/
+
+/* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800. */
+//********  EJERCICIO 16********/
+const descounter = (ci = "", desc = "") => {
+  let cuenta = ci;
+  let descount = desc;
+  let descountResult = (cuenta * descount) / 100;
+  let total = cuenta - descountResult;
+  console.log(`La cuenta a pagar es de: ${total}`);
+};
+descounter(100, 10);
+console.clear();
+//********  EJERCICIO 16 FIN********/
+
+/* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020) */
+//********  EJERCICIO 17********/
+
+/* 
+https://medium.com/javascript-in-plain-english/find-difference-between-dates-in-javascript-80d9280d8598
+*/
+
+const howLong = (yyyy = "", mm = "", dd = "") => {
+  let date1 = Date.now();
+  let date2 = new Date(yyyy, mm, dd).getTime();
+  let today = new Date();
+  let dateCompared = new Date(yyyy, mm, dd);
+  //seconds
+  let milliSecDiff = date2 - date1;
+  let secondsDiff = Math.floor((date2 - date1) / 1000);
+  //minutes
+  let minDiff = Math.floor(secondsDiff / 60);
+  //hours
+  let hourDiff = Math.floor(minDiff / 60);
+  //days
+  let dayDiff = Math.floor(hourDiff / 24);
+  //weeks
+  let weekDiff = Math.floor(dayDiff / 7);
+  //years
+  let d1 = new Date(date1);
+  let d2 = new Date(date2);
+  let yearsDiff = d2.getFullYear() - d1.getFullYear();
+  //months
+  let monthDiff = yearsDiff * 12 + (d2.getMonth() - d1.getMonth());
+  //Results
+  /*****/
+  console.log(
+    `Tiempo que ha pasado desde ${dateCompared.getDate()}/${dateCompared.getMonth()}/${dateCompared.getFullYear()} hasta ${today.toLocaleDateString()}`
+  );
+  //Years
+  console.log(`Años: ${yearsDiff * -1}`);
+  //Months
+  console.log(`Meses: ${monthDiff * -1}`);
+  //Weeks
+  console.log(`Semanas: ${weekDiff * -1}`);
+  //Days
+  console.log(`Días: ${dayDiff * -1}`);
+  //Hours
+  console.log(`Horas: ${hourDiff * -1}`);
+  //Minutes
+  console.log(`Minutos: ${minDiff * -1}`);
+  //Seconds
+  console.log(`Segundos: ${secondsDiff * -1}`);
+  //Milliseconds
+  console.log(`Segundos: ${milliSecDiff * -1}`);
+};
+howLong(2019, 5, 22);
+console.clear();
+//********  EJERCICIO 17 FIN********/
+
+/* 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10. */
+//********  EJERCICIO 15********/
+const converBinToDec = () => {};
+converBinToDec(100, 2);
+//********  EJERCICIO 15 FIN********/
