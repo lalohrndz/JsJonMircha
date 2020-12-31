@@ -1,0 +1,39 @@
+/*Para aplicar los cambios desde el borde*/
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+/*
+Align content
+
+Align-content trabaja con el eje transversal del axis. Si estamos trabajando con un flex-drection:row (eje X) align-content trabajará con el eje Y.
+Align-content NO funciona cuando los elemetos están en una sola línea (nowrap)
+
+Align items
+
+Align-items trabaja con el eje principal, si tenemos un flex-drection:row (eje X) trabajará sobre el eje X
+*/
+.container {
+  background-color: rgb(226, 116, 13);
+  height: 30vh;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.item {
+  width: 20%;
+  text-align: center;
+  border: medium solid rgb(92, 90, 90);
+  background-color: rgb(243, 190, 76);
+}
+
+/*Cada segundo y quinto elemento de la clase item :nth-child()*/
+.item:nth-child(2),
+.item:nth-child(5) {
+  font-size: 120%;
+  background-color: rgb(255, 51, 0);
+}
