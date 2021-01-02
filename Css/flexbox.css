@@ -5,35 +5,69 @@
   box-sizing: border-box;
 }
 /*
-Align content
+
+https://www.youtube.com/watch?v=ELP5l8IVSJo
+ 
+**Align content**
 
 Align-content trabaja con el eje transversal del axis. Si estamos trabajando con un flex-drection:row (eje X) align-content trabajará con el eje Y.
 Align-content NO funciona cuando los elemetos están en una sola línea (nowrap)
 
-Align items
+**Align items**
 
 Align-items trabaja con el eje principal, si tenemos un flex-drection:row (eje X) trabajará sobre el eje X
 */
 .container {
   background-color: rgb(226, 116, 13);
-  height: 30vh;
+  height: 10vh;
 
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .item {
-  width: 20%;
+  /* width: 20%; */
+  flex: 1 1 auto;
+  /*Es un shorthand de las propiesdades de flex-grow | flex-shrink | flex-basis*/
+  /*
+  flex-grow
+  Cuando la caja de flexbox tenga espacio sobrante es la habilidad o el factor de crecer, valor por defecto es 0, NO se aceptan valores negativos
+  */
+  flex-grow: 1;
+  flex-shrink: 1;
+  /*
+  flex-shrink
+  Cuando la caja NO tenga espacio suficiente es la  habilidad o el factor de encogerse valr por defente es 1, NO se aceptan valores negativos
+  */
+  flex-basis: 100px;
+  /*
+  Es el tamaño del elemento hijo dentro de la lìnea de la caja flexbox.
+  Si la caja flexbox tiene direcciòn de fila, flex-basis representa el with
+  Si la caja flexbox tiene direcciòn de columna, flex-basis representa el heigh.
+  valor por defecto,auto
+  */
+  order: 0;
+  /*Representa el orden que tendrán los elementos hijos en la caja flexbox.
+  valor por defecto es 0, se aceptan valores positivos y negativos, un valor menor siempre irá antes que un valor mayor*/
+  align-self: stretch;
   text-align: center;
   border: medium solid rgb(92, 90, 90);
   background-color: rgb(243, 190, 76);
 }
 
 /*Cada segundo y quinto elemento de la clase item :nth-child()*/
-.item:nth-child(2),
+/* .item:nth-child(2),
 .item:nth-child(5) {
   font-size: 120%;
   background-color: rgb(255, 51, 0);
+}
+ */
+.item:nth-child(2) {
+  /* flex-shrink: 2; */
+  order: 1;
+  align-self: flex-start;
 }
