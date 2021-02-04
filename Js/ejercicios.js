@@ -307,6 +307,42 @@ const temperature = (g = "", ng = "") => {
 temperature(3, "c");
 console.clear();
 //********  EJERCICIO 14 FIN********/
+/* 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10. */
+//********  EJERCICIO 15********/
+
+// ? El método parseInt permite convertir números de base binaria a base decimal. Para utilizar el método debemos de ingresar el número a evaluar y la base actual del número
+
+const convertBinToDec = (number = undefined, base = undefined) => {
+  let a = number;
+  let b = base;
+  if (a === undefined) return console.warn("Ingrese el número a convertir");
+
+  if (b === undefined) return console.warn("Ingrese la base a convertir");
+
+  if (typeof a !== "number")
+    return console.warn("El tipo de datos que ingresó no es numerico");
+
+  if (typeof b !== "number")
+    return console.warn("El tipo de datos que ingresó no es numerico");
+
+  //? Conversión de binario a decimal
+  if (b === 2) {
+    return console.info(
+      `El número ${a} base ${b} es igual a ${parseInt(a, b)} base 10`
+    );
+  }
+  //? Conversión de decimal a binario
+  if (b === 1) {
+    return console.info(
+      `El número ${a} base ${b} es igual a ${a.toString(2)} base 2`
+    );
+  } else {
+    return console.warn(`La base ${base} ingresada no esta permitida`);
+  }
+};
+convertBinToDec(4, 1);
+console.clear();
+//********  EJERCICIO 15 FIN********/
 
 /* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800. */
 //********  EJERCICIO 16********/
@@ -376,8 +412,63 @@ howLong(2019, 5, 22);
 console.clear();
 //********  EJERCICIO 17 FIN********/
 
-/* 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10. */
-//********  EJERCICIO 15********/
-const converBinToDec = () => {};
-converBinToDec(100, 2);
-//********  EJERCICIO 15 FIN********/
+/*18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.*/
+//********  EJERCICIO 18********/
+const vocalCount = (text = undefined) => {
+  if (text === undefined)
+    return console.warn("Ingrese texto para contar sus vocales y consonantes");
+
+  if (typeof text === "number")
+    return console.error("No se aceptan valores numéricos");
+
+  if (typeof text !== "string") {
+    return console.error(
+      `El tipo de dato de ${text} no es valido [${typeof text}]`
+    );
+  } else {
+    let t = text.toLowerCase();
+    let oneText = t.replace(/ /g, "");
+    console.log(oneText);
+    let vocals = 0;
+    let consonants = 0;
+    for (let count = 0; count < oneText.length; count++) {
+      if (
+        oneText[count] == "a" ||
+        oneText[count] == "e" ||
+        oneText[count] == "i" ||
+        oneText[count] == "o" ||
+        oneText[count] == "u"
+      ) {
+        console.log(text[count]);
+        vocals++;
+      } else {
+        consonants++;
+      }
+    }
+    console.info(`Texto: ${text}`);
+    console.info(`Vocales: ${vocals}`);
+    console.info(`Consonantes: ${consonants}`);
+  }
+};
+vocalCount("HOLA MUNDO");
+console.clear();
+//********  EJERCICIO 18 FIN********/
+
+/*19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.*/
+//********  EJERCICIO 19********/
+const validName = (name = undefined) => {
+  if (name === undefined) return console.warn("Ingresar algún valor");
+
+  if (name == "number") {
+    return console.warn("Debe de ingresar valores del tipo texto");
+  } else {
+    let validation = /[A-Za-z0-9]/gi;
+    console.log(validation.exec(name));
+  }
+};
+validName("Jonathan MirCha&");
+//********  EJERCICIO 19 FIN********/
+
+/*20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.*/
+//********  EJERCICIO 20********/
+//********  EJERCICIO 20 FIN********/
