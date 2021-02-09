@@ -459,16 +459,120 @@ console.clear();
 const validName = (name = undefined) => {
   if (name === undefined) return console.warn("Ingresar algún valor");
 
+  if (name == "") return console.warn("Favor de ingrear algún nombre.");
+
   if (name == "number") {
     return console.warn("Debe de ingresar valores del tipo texto");
   } else {
-    let validation = /[A-Za-z0-9]/gi;
+    let validation = /^[a-zA-Z0-9]/;
     console.log(validation.exec(name));
   }
 };
-validName("Jonathan MirCha&");
+validName("Jonathan MirCha");
+//!Checar resultado en video
+console.clear();
 //********  EJERCICIO 19 FIN********/
 
 /*20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.*/
 //********  EJERCICIO 20********/
+const validMail = (mail = undefined) => {
+  if (mail === undefined) return console.warn("Favor de ingresar un correo.");
+  if (mail == "") return console.warn("Favor de ingresar un correo");
+
+  if (mail == "number") {
+    return console.warn("Ingrese un correo");
+  } else {
+    let validation = /[\w._%+-]+@[\w.-]+\.[a-zA-Z]/;
+    return console.log(validation.test(mail));
+  }
+};
+validMail("jonmircha@gmail.com");
+//!Checar resultado en video
+console.clear();
 //********  EJERCICIO 20 FIN********/
+
+/*21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].*/
+//********  EJERCICIO 21********/
+const squareArray = (arr = []) => {
+  for (const i in arr) {
+    arr[i] = arr[i] * arr[i];
+  }
+  console.log(arr);
+};
+squareArray([1, 4, 5]);
+console.clear();
+//********  EJERCICIO 21 FIN********/
+
+/*22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].*/
+//********  EJERCICIO 22********/
+const biggestNLowest = (arr = []) => {
+  arr.sort();
+  let arr2 = [];
+  let biggest = arr[arr.length - 1];
+  let lowest = arr[0];
+
+  arr2.push(biggest);
+  arr2.push(lowest);
+
+  console.log(arr);
+  console.log(`Bigger: ${biggest}`);
+  console.log(`Lower: ${lowest}`);
+  console.log(arr2);
+};
+biggestNLowest([1, 4, 5, 99, -60, 3]);
+console.clear();
+//********  EJERCICIO 22 FIN********/
+
+/*23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.*/
+//********  EJERCICIO 23********/
+const pairOdd = (arr = []) => {
+  arr.sort();
+  let pairs = [];
+  let odds = [];
+
+  for (const i in arr) {
+    let result = arr[i] % 2;
+    console.log(result);
+
+    if (result === 0) {
+      pairs.push(arr[i]);
+    } else {
+      odds.push(arr[i]);
+    }
+  }
+
+  console.log("Lista de los números pares:");
+  console.log(pairs);
+  console.log("**************************");
+  console.log("Lista de los números impartes");
+  console.log(odds);
+};
+pairOdd([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+console.clear();
+//********  EJERCICIO 23 FIN********/
+
+//24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+//********  EJERCICIO 24********/
+const sorter = (arr = []) => {
+  let desc = arr;
+  let asc = arr;
+
+  console.log("Arreglo desendente:");
+  console.log(desc.sort().reverse());
+  console.log("*********************");
+  console.log("Arreglo asendente:");
+  console.log(asc.sort());
+};
+sorter([7, 5, 7, 8, 6]);
+console.clear();
+//********  EJERCICIO 24 FIN********/
+
+//25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+//********  EJERCICIO 25********/
+const duplicated = (arr = []) => {};
+duplicated(["x", 10, "x", 2, "10", 10, true, true]);
+//********  EJERCICIO 25 FIN********/
+
+//26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
+//********  EJERCICIO 26********/
+//********  EJERCICIO 26 FIN********/
