@@ -594,11 +594,11 @@ console.clear();
 /* 27) Programa una clase llamada Pelicula.
 
 La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
-  - Todos los datos del objeto son obligatorios.
-  - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 
-     7 restantes números.
-  - Valida que el título no rebase los 100 caracteres.
-  - Valida que el director no rebase los 50 caracteres.
+
+  - Todos los datos del objeto son obligatorios. [x]
+  - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y  los 7 restantes números. [x]
+  - Valida que el título no rebase los 100 caracteres. [x]
+  - Valida que el director no rebase los 50 caracteres. [x]
   - Valida que el año de estreno sea un número entero de 4 dígitos.
   - Valida que el país o paises sea introducidos en forma de arreglo.
   - Valida que los géneros sean introducidos en forma de arreglo.
@@ -635,6 +635,7 @@ class Peliculas {
     this.CalificacionIMDB = CalificacionIMDB;
   }
   pelicula() {
+    //? Todos los datos del objeto son obligatorios.
     if (
       this.IdPeliculaIMDB == undefined ||
       this.Titulo == undefined ||
@@ -644,9 +645,48 @@ class Peliculas {
       this.Genero == undefined ||
       this.CalificacionIMDB == undefined
     ) {
-      return console.warn("Favor de ingresar todos los valores");
+      return console.warn("Favor de ingresar todos los valores.");
+    }
+
+    //? Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y  los 7 restantes números.
+    if (this.IdPeliculaIMDB.length != 9) {
+      return console.warn("Favor de validar el ID de IMDB");
+    }
+    let IdLettersIMDB = this.IdPeliculaIMDB.slice(0, 2);
+    let IdIMDB = /[a-zA-Z]/;
+    let IdLettersIMDBLenght = IdIMDB.test(IdLettersIMDB);
+
+    if (IdLettersIMDBLenght == false) {
+      console.warn("Favor de veificar primeros caracteres del ID IMDB");
+    }
+
+    //?Valida que el título no rebase los 100 caracteres.
+    if (this.Titulo.length > 100) {
+      console.warn(
+        "El titulo es demasiado largo, favor de introducir uno más corto"
+      );
+    }
+    //? Valida que el director no rebase los 50 caracteres.
+    if (this.Director.length > 50) {
+      console.warn("El nomrbe del director es demasiado largo");
+    }
+
+    //?Valida que el año de estreno sea un número entero de 4 dígitos.
+    let AñoEstrenoLenght = this.AñoDeEstreno.toString().length;
+    if (AñoEstrenoLenght > 4) {
+      console.warn("Favor de verificar el año de estreno");
     }
   }
 }
+const soul = new Peliculas(
+  "SO3456789",
+  "Soul",
+  "Director",
+  2020,
+  "USA",
+  "Infantil",
+  10
+);
 
+soul.pelicula();
 //********  EJERCICIO 27 FIN********/
