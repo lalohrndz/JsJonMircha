@@ -599,12 +599,12 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
   - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y  los 7 restantes números. [x]
   - Valida que el título no rebase los 100 caracteres. [x]
   - Valida que el director no rebase los 50 caracteres. [x]
-  - Valida que el año de estreno sea un número entero de 4 dígitos.
-  - Valida que el país o paises sea introducidos en forma de arreglo.
-  - Valida que los géneros sean introducidos en forma de arreglo.
+  - Valida que el año de estreno sea un número entero de 4 dígitos. [x]
+  - Valida que el país o paises sea introducidos en forma de arreglo. [x]
+  - Valida que los géneros sean introducidos en forma de arreglo. [x]
   - Valida que los géneros introducidos esten dentro de los géneros 
-     aceptados*.
-  - Crea un método estático que devuelva los géneros aceptados*.
+     aceptados*. [x]
+  - Crea un método estático que devuelva los géneros aceptados*. [x]
   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser 
     decimal de una posición.
   - Crea un método que devuelva toda la ficha técnica de la película.
@@ -612,7 +612,7 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
     instancias de la clase de forma automatizada e imprime la ficha técnica 
     de cada película.
 
-* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+* Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, c, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
  */
 
 //********  EJERCICIO 27********/
@@ -635,6 +635,36 @@ class Peliculas {
     this.CalificacionIMDB = CalificacionIMDB;
   }
   pelicula() {
+    const generos = [
+      "Action",
+      "Fantasy",
+      "Adult",
+      "Adventure",
+      "Animation",
+      "Biography",
+      "Comedy",
+      "Crime",
+      "Documentary",
+      "Drama",
+      "Family",
+      "Film Noir",
+      "Game-Show",
+      "History",
+      "Horror",
+      "Musical",
+      "Music",
+      "Mystery",
+      "News",
+      "Reality-TV",
+      "Romance",
+      "Sci-Fi",
+      "Short",
+      "Sport",
+      "Talk-Show",
+      "Thriller",
+      "War",
+      "Western",
+    ];
     //? Todos los datos del objeto son obligatorios.
     if (
       this.IdPeliculaIMDB == undefined ||
@@ -676,6 +706,36 @@ class Peliculas {
     if (AñoEstrenoLenght > 4) {
       console.warn("Favor de verificar el año de estreno");
     }
+
+    //?Valida que el país o paises sea introducidos en forma de arreglo.
+    if (this.PaisDeOrigen === "object") {
+      console.warn("El tipo de dato del pais no es aceptado");
+    }
+
+    //?Valida que los géneros sean introducidos en forma de arreglo.
+    if (this.Genero === "object") {
+      console.warn("El tipo de dato del género no es aceptado");
+    }
+
+    //?Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+    let generosDePelicula = this.Genero;
+
+    let generosNoEncontrados = generosDePelicula.filter(
+      (x) => !generos.includes(x)
+    );
+    let generosEncontrados = generos.filter((x) =>
+      generosDePelicula.includes(x)
+    );
+
+    if (generosNoEncontrados.length == 0) {
+    } else {
+      console.log(`No se encontraron estos generos: ${generosNoEncontrados}`);
+    }
+  }
+
+  //?Crea un método estático que devuelva los géneros aceptados*.
+  static generosAceptados() {
+    return console.log(`Generos Aceptados: ${generosEncontrados}`);
   }
 }
 const soul = new Peliculas(
@@ -683,8 +743,8 @@ const soul = new Peliculas(
   "Soul",
   "Director",
   2020,
-  "USA",
-  "Infantil",
+  ["USA", "Mexico"],
+  ["Animation", "Family", "Fantasy"],
   10
 );
 
