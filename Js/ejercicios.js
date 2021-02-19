@@ -591,6 +591,7 @@ avg([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
 console.clear();
 //********  EJERCICIO 26 FIN********/
 
+//********  EJERCICIO 27 EJEMPLO JON MIRCHA********/
 /* 27) Programa una clase llamada Pelicula.
 
 La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
@@ -606,8 +607,8 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
      aceptados*. [x]
   - Crea un método estático que devuelva los géneros aceptados*. [x]
   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser 
-    decimal de una posición.
-  - Crea un método que devuelva toda la ficha técnica de la película.
+    decimal de una posición. [x]
+  - Crea un método que devuelva toda la ficha técnica de la película. [x]
   - Apartir de un arreglo con la información de 3 películas genera 3 
     instancias de la clase de forma automatizada e imprime la ficha técnica 
     de cada película.
@@ -615,29 +616,38 @@ La clase recibirá un objeto al momento de instanciarse con los siguentes datos:
 * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, c, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
  */
 
-//********  EJERCICIO 27********/
-class Peliculas {
-  constructor(
-    IdPeliculaIMDB,
+class Pelicula {
+  constructor({
+    idIMDB,
     Titulo,
     Director,
-    AñoDeEstreno,
-    PaisDeOrigen,
-    Genero,
-    CalificacionIMDB
-  ) {
-    this.IdPeliculaIMDB = IdPeliculaIMDB;
+    Estreno,
+    Pais,
+    Generos,
+    Calificacion,
+  }) {
+    this.idIMDB = idIMDB;
     this.Titulo = Titulo;
     this.Director = Director;
-    this.AñoDeEstreno = AñoDeEstreno;
-    this.PaisDeOrigen = PaisDeOrigen;
-    this.Genero = Genero;
-    this.CalificacionIMDB = CalificacionIMDB;
+    this.Estreno = Estreno;
+    this.Pais = Pais;
+    this.Generos = Generos;
+    this.Calificacion = Calificacion;
+
+    //?Aquí se ejectuan los métodos
+    this.validarIMDB(idIMDB);
+    this.validarTitulo(Titulo);
+    this.validarDirector(Director);
+    this.validarEstreno(Estreno);
+    this.validarPais(Pais);
+    this.validarGeneros(Generos);
+    //this.resultadoValidacionGeneros(Generos);
+    this.validarCalificacion(Calificacion);
   }
-  pelicula() {
-    const generos = [
+
+  static get listaGeneros() {
+    return [
       "Action",
-      "Fantasy",
       "Adult",
       "Adventure",
       "Animation",
@@ -665,88 +675,180 @@ class Peliculas {
       "War",
       "Western",
     ];
-    //? Todos los datos del objeto son obligatorios.
-    if (
-      this.IdPeliculaIMDB == undefined ||
-      this.Titulo == undefined ||
-      this.Director == undefined ||
-      this.AñoDeEstreno == undefined ||
-      this.PaisDeOrigen == undefined ||
-      this.Genero == undefined ||
-      this.CalificacionIMDB == undefined
-    ) {
-      return console.warn("Favor de ingresar todos los valores.");
-    }
+  }
 
-    //? Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y  los 7 restantes números.
-    if (this.IdPeliculaIMDB.length != 9) {
-      return console.warn("Favor de validar el ID de IMDB");
-    }
-    let IdLettersIMDB = this.IdPeliculaIMDB.slice(0, 2);
-    let IdIMDB = /[a-zA-Z]/;
-    let IdLettersIMDBLenght = IdIMDB.test(IdLettersIMDB);
+  static generosAceptados() {
+    return console.info(
+      `Los generos aceptados son ${Pelicula.listaGeneros.join(", ")}`
+    );
+  }
 
-    if (IdLettersIMDBLenght == false) {
-      console.warn("Favor de veificar primeros caracteres del ID IMDB");
-    }
+  validarCadena(propiedad, valor) {
+    if (!valor) return console.warn(`${propiedad} "${valor} esta vacio"`);
 
-    //?Valida que el título no rebase los 100 caracteres.
-    if (this.Titulo.length > 100) {
-      console.warn(
-        "El titulo es demasiado largo, favor de introducir uno más corto"
+    if (typeof valor !== "string")
+      return console.error(
+        `${propiedad} "${valor} ingresado NO es una cadena de texto"`
+      );
+    return true;
+  }
+
+  validarLongitudCadena(propiedad, valor, longitud) {
+    if (valor.length > longitud)
+      return console.error(
+        `${propiedad} "${valor} excede el número de caracteres permitidos"`
+      );
+    return true;
+  }
+
+  validarIMDB(idIMDB) {
+    if (this.validarCadena("IMDB id", idIMDB)) {
+      //TODO: En regex el símbolo de "^" y "$" significan que no debe de contrar nada antes(^) ni después($)
+      if (!/^([a-z]){2}([0-9]{7})$/.test(idIMDB)) {
+        return console.error(
+          `El ID IMDB "${idIMDB} no es válido. Debe de contener 9 caracteres en total donde los 2 primeros son letras minúsculas y los 7 restantes números" `
+        );
+      }
+    }
+  }
+
+  validarTitulo(Titulo) {
+    if (this.validarCadena("Titulo", Titulo)) {
+      this.validarLongitudCadena("Titulo", Titulo, 100);
+    }
+  }
+
+  validarDirector(Director) {
+    if (this.validarCadena("Director", Director)) {
+      this.validarLongitudCadena("Director", Director, 50);
+    }
+  }
+
+  validarNumero(propiedad, valor) {
+    if (!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+
+    if (typeof valor !== "number")
+      return console.warn(`${propiedad} "${valor} ingresado NO es un número"`);
+
+    return true;
+  }
+
+  validarEstreno(Estreno) {
+    if (this.validarNumero("Año de estreno", Estreno)) {
+      if (!/^([0-9]{4})$/.test(Estreno)) {
+        return console.warn(
+          `El año de estreno ${Estreno} NO es un número válido `
+        );
+      }
+    }
+  }
+
+  validarArreglo(propiedad, valor) {
+    if (!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+
+    if (!(valor instanceof Array))
+      return console.error(`${propiedad} "${valor}" no es un arreglo"`);
+
+    if (valor.length === 0)
+      return console.error(`${propiedad} "${valor} no tiene datos"`);
+
+    for (const cadena of valor) {
+      if (typeof cadena !== "string")
+        return console.error(
+          `El valor ${cadena} ingresado NO es una cadean de texto`
+        );
+    }
+    return true;
+  }
+
+  validarPais(Pais) {
+    this.validarArreglo("Pais", Pais);
+  }
+
+  validarGeneros(generos) {
+    if (this.validarArreglo("Genero", generos)) {
+      for (const genero of this.Generos) {
+        if (!Pelicula.listaGeneros.includes(genero)) {
+          console.error(`Genero(s) incorrectos: ${this.Generos.join(", ")}`);
+        }
+      }
+    }
+  }
+
+  /* resultadoValidacionGeneros(generos) {
+    if (this.validarArreglo("Genero", generos)) {
+      console.log(
+        `Generos encontrados: ${Pelicula.listaGeneros
+          .filter((x) => this.Generos.includes(x))
+          .join(", ")}`
+      );
+      console.log(
+        `Generos NO encontrados: ${this.Generos.filter(
+          (x) => !Pelicula.listaGeneros.includes(x)
+        ).join(", ")}`
       );
     }
-    //? Valida que el director no rebase los 50 caracteres.
-    if (this.Director.length > 50) {
-      console.warn("El nomrbe del director es demasiado largo");
-    }
+  } */
 
-    //?Valida que el año de estreno sea un número entero de 4 dígitos.
-    let AñoEstrenoLenght = this.AñoDeEstreno.toString().length;
-    if (AñoEstrenoLenght > 4) {
-      console.warn("Favor de verificar el año de estreno");
-    }
-
-    //?Valida que el país o paises sea introducidos en forma de arreglo.
-    if (this.PaisDeOrigen === "object") {
-      console.warn("El tipo de dato del pais no es aceptado");
-    }
-
-    //?Valida que los géneros sean introducidos en forma de arreglo.
-    if (this.Genero === "object") {
-      console.warn("El tipo de dato del género no es aceptado");
-    }
-
-    //?Valida que los géneros introducidos esten dentro de los géneros aceptados*.
-    let generosDePelicula = this.Genero;
-
-    let generosNoEncontrados = generosDePelicula.filter(
-      (x) => !generos.includes(x)
-    );
-    let generosEncontrados = generos.filter((x) =>
-      generosDePelicula.includes(x)
-    );
-
-    if (generosNoEncontrados.length == 0) {
-    } else {
-      console.log(`No se encontraron estos generos: ${generosNoEncontrados}`);
+  validarCalificacion(Calificacion) {
+    if (this.validarNumero("Calificacion", this.Calificacion)) {
+      return Calificacion < 0 || Calificacion > 10
+        ? console.error(`La calificación debe de estar en un rango de 0 y 10`)
+        : (this.Calificacion = Calificacion.toFixed(1));
     }
   }
 
-  //?Crea un método estático que devuelva los géneros aceptados*.
-  static generosAceptados() {
-    return console.log(`Generos Aceptados: ${generosEncontrados}`);
+  fichaTecnica() {
+    console.info(`-Ficha Técnica-
+    Titulo: ${this.Titulo}
+    Director: ${this.Director}
+    Estreno: ${this.Estreno}
+    Pais: ${this.Pais}
+    Generos: ${this.Generos}
+    Calificación IMDB: ${this.Calificacion}
+    `);
   }
 }
-const soul = new Peliculas(
-  "SO3456789",
-  "Soul",
-  "Director",
-  2020,
-  ["USA", "Mexico"],
-  ["Animation", "Family", "Fantasy"],
-  10
-);
 
-soul.pelicula();
-//********  EJERCICIO 27 FIN********/
+/* const peli = new Pelicula({
+  idIMDB: "tt1234567",
+  Titulo: "Titulo de la peli",
+  Director: "Director de la peli",
+  Estreno: 2020,
+  Pais: ["Pais"],
+  Generos: ["Comedy", "Sport"],
+  Calificacion: 9.2222,
+}); */
+
+const misPelis = [
+  {
+    idIMDB: "tt7964265",
+    Titulo: "The Dark Knight",
+    Director: "Chistopher Nolan",
+    Estreno: 2008,
+    Pais: ["USA", "UK"],
+    Generos: ["Action", "Crime", "Drama"],
+    Calificacion: 10,
+  },
+  {
+    idIMDB: "tt1642348",
+    Titulo: "Rocky Balboa",
+    Director: "Sylvester Stallone",
+    Estreno: 2006,
+    Pais: ["USA"],
+    Generos: ["Action", "Drama", "Sport"],
+    Calificacion: 7.1,
+  },
+  {
+    idIMDB: "tt1347951",
+    Titulo: "Into the wild",
+    Director: "Sean Penn",
+    Estreno: 2007,
+    Pais: ["USA"],
+    Generos: ["Adventure", "Biography", "Drama"],
+    Calificacion: 8.9,
+  },
+];
+
+misPelis.forEach((elements) => new Pelicula(elements).fichaTecnica());
+//********  EJERCICIO 27 EJEMPLO JON MIRCHA FIN********/
