@@ -82,3 +82,78 @@
         uno();
         console.log("----Fin-----");
       })(); */
+
+/* function cuadraroCallBack(value, callback) {
+  setTimeout(() => {
+    callback(value, value * value);
+  }, 0 | (Math.random() * 1000));
+} */
+
+//!CallBack Hell
+//? http://callbackhell.com
+/* cuadraroCallBack(0, (value, result) => {
+  console.log("Inicia callback");
+  console.log(`Callback: ${value}, ${result}`);
+  cuadraroCallBack(1, (value, result) => {
+    console.log(`Callback: ${value}, ${result}`);
+    cuadraroCallBack(2, (value, result) => {
+      console.log(`Callback: ${value}, ${result}`);
+      cuadraroCallBack(3, (value, result) => {
+        console.log(`Callback: ${value}, ${result}`);
+        cuadraroCallBack(4, (value, result) => {
+          console.log(`Callback: ${value}, ${result}`);
+          cuadraroCallBack(5, (value, result) => {
+            console.log(`Callback: ${value}, ${result}`);
+          });
+        });
+      });
+    });
+  });
+}); */
+
+//note: Promesas
+//? Si la promesa consta de dos objetos "Resolve" & "Reject". Si se reliza una petición que termina con un resultado de retorno se realiza el resolve de lo contrario mostrará un error, el reject
+
+function cuadraroPromise(value) {
+  if (typeof value !== "number") {
+    return Promise.reject("Error, vaya");
+  }
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        value: value,
+        resolve: value * value,
+      });
+    }, Math.random() * 1000);
+  });
+}
+
+cuadraroPromise(0)
+  .then((obj) => {
+    console.log("Inicio promesa");
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    return cuadraroPromise(1);
+    //console.log(obj);
+  })
+  .then((obj) => {
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    return cuadraroPromise(2);
+  })
+  .then((obj) => {
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    return cuadraroPromise(3);
+  })
+  .then((obj) => {
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    return cuadraroPromise(4);
+  })
+  .then((obj) => {
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    return cuadraroPromise(5);
+  })
+  .then((obj) => {
+    console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
+    console.log("Fin promesa");
+  })
+  .catch((err) => console.error(err));
