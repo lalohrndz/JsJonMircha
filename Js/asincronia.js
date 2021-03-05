@@ -119,7 +119,7 @@ function cuadraroPromise(value) {
     return Promise.reject("Error, vaya");
   }
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         value: value,
@@ -129,12 +129,12 @@ function cuadraroPromise(value) {
   });
 }
 
-cuadraroPromise(0)
+/* cuadraroPromise(0)
   .then((obj) => {
     console.log("Inicio promesa");
     console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
     return cuadraroPromise(1);
-    //console.log(obj);
+    console.log(obj);
   })
   .then((obj) => {
     console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
@@ -156,4 +156,64 @@ cuadraroPromise(0)
     console.log(`Promesa: ${obj.value}, ${obj.resolve}`);
     console.log("Fin promesa");
   })
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err)); */
+
+//? Función Asíncrona
+async function funcionAsyncDeclarada() {
+  try {
+    console.log("Inicio de Async Func declarada");
+    let obj = await cuadraroPromise(0);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(1);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(2);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(3);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(4);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(5);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    console.log("Fin async func delcarada");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+funcionAsyncDeclarada();
+
+//? Función asincrona expresada
+const funcAsynExp = async () => {
+  try {
+    console.log("Inicio de Async Func expresada");
+    let obj = await cuadraroPromise(6);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(7);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(8);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(9);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(10);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    obj = await cuadraroPromise(11);
+    console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
+
+    console.log("Fin async func expresada");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+funcAsynExp();
