@@ -20,20 +20,11 @@
 //****************************************************************
 //Importar archios de las variables
 //Al guardar un archivo que va a ser para importación se debe de agregar un guin bajo al inicio. Estos archivos de importanción dentro del main.sass SI deben de tener un orden
-//****************************************************************
-@import _variables
 
-body
-    background-color: $colorNaranja
-
-h1
-    color: $colorBlanco
-
-//****************************************************************
 //Anidación de selecores
 //****************************************************************
 
-.contenedor
+/** .contenedor
     background-color: $colorBlanco
     box-shadow: 5px 4px 9px $colorNegro
     +border-radius(8px)
@@ -42,10 +33,19 @@ h1
         background-color: $colorGris
     p
         padding-top: 1em
-        text-align: center
+        text-align: center **/
 
 //****************************************************************
 //Extenciones
 //****************************************************************
-.contenedor2
-    @extend .contenedor
+/** .contenedor2
+    @extend .contenedor **/
+
+//*note: INICIO DE PÁGINA INDEX
+
+h1
+    background-color:red
+    border: 2px solid red
+
+.card
+    background-color: blue

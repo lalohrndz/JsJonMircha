@@ -1,1 +1,9 @@
-{"version":3,"sourceRoot":"","sources":["main.sass","_variables.sass"],"names":[],"mappings":"AAyBA;EACI,kBCtBW;;;ADwBf;EACI,OCxBU;;;AD8Bd;EACI,kBC/BU;EDgCV;ECvBA,uBDwBe;ECvBf,oBDuBe;ECtBf,mBDsBe;ECrBf,eDqBe;EACf;;AACA;EACI,kBClCI;;ADmCR;EACI;EACA","file":"main.css"}
+{
+    "version": 3,
+    "mappings": "AA0BA;;;;;;;;;8BAS8B;AAK9B;2BAC2B;AAI3B,AAAA,EAAE,CAAC;EAEC,MAAM,EAAE,aAAa;CAAG",
+    "sources": [
+        "main.sass"
+    ],
+    "names": [],
+    "file": "main.css"
+}
