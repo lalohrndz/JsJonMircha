@@ -160,7 +160,7 @@ function cuadraroPromise(value) {
 
 //? Función Asíncrona
 async function funcionAsyncDeclarada() {
-  try {
+  /*   try {
     console.log("Inicio de Async Func declarada");
     let obj = await cuadraroPromise(0);
     console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
@@ -182,15 +182,15 @@ async function funcionAsyncDeclarada() {
 
     console.log("Fin async func delcarada");
   } catch (err) {
-    console.log(err);
-  }
+    console.log(err); 
+  }*/
 }
 
 funcionAsyncDeclarada();
 
 //? Función asincrona expresada
 const funcAsynExp = async () => {
-  try {
+  /*   try {
     console.log("Inicio de Async Func expresada");
     let obj = await cuadraroPromise(6);
     console.log(`Async Func: ${obj.value}, ${obj.resolve}`);
@@ -213,7 +213,54 @@ const funcAsynExp = async () => {
     console.log("Fin async func expresada");
   } catch (err) {
     console.log(err);
-  }
+  } */
 };
 
 funcAsynExp();
+
+//? Generators
+//note: Al agregar el * al lado de la palabra function js lo reconoce como generador.
+function* iterable() {
+  //note: un yeild es similar al return. Cuando se detecta que se utiliza un yeild el buscador ejecuta el código y hasta que pase al siguiente yield no avanza el generador
+  yield "Hola";
+  console.log("Hola consola");
+  yield "Hola 2";
+  console.log("Hola consola 2");
+  yield "Hola 3";
+  yield "Hola 4";
+}
+
+let iterator = iterable();
+for (const i of iterator) {
+  console.log(i);
+}
+
+const arr = [...iterable()];
+console.log(arr);
+
+function square(valor) {
+  setTimeout(() => {
+    return console.log({ valor, resultado: valor * valor });
+  }, Math.random() * 1000);
+
+  /*   return {
+    valor,
+    resultado: valor * valor,
+  }; */
+}
+
+function* generator() {
+  console.log("Inicio generator");
+  yield square(0);
+  yield square(1);
+  yield square(2);
+  yield square(3);
+  yield square(4);
+  yield square(5);
+  console.log("Termina generator");
+}
+
+let gen = generator();
+for (let y of gen) {
+  console.log(y);
+}
