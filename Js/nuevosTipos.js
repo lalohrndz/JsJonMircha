@@ -250,3 +250,86 @@ usuarios.forEach(
   (usuario, index) => (objUsuarios[`id_${index + 1}`] = usuario)
 );
 //console.log(objUsuarios);
+this.nombre = "Contexto global";
+//console.log(this.nombre);
+
+function imprimir() {
+  console.log(this.nombre);
+}
+
+//imprimir();
+
+const obj1 = {
+  nombre: "Contexto Objeto",
+  imprimir: function () {
+    console.log(this.nombre);
+  },
+};
+
+//obj.imprimir();
+
+const obj2 = {
+  nombre: "Contexto Objeto 2",
+  imprimir,
+};
+
+//obj2.imprimir();
+
+const obj3 = {
+  nombre: "Contexto Objeto 3",
+  imprimir: () => {
+    console.log(this.nombre);
+  },
+};
+
+//obj3.imprimir();
+
+function people(nombre) {
+  this.nombre = nombre;
+  //return console.log(this.nombre);
+  //note: En este caso la funcion anónima crea un nuevo scope por lo cual el this consulta el árbol principal para el console.log
+  /*   return function () {
+    console.log(this.nombre);
+  }; */
+  //note: Las arrow function no generan un nuevo scope tomando el scope del padre del objeto en el que fue creado
+  //return () => console.log(this.nombre);
+}
+
+let pepe = new people("pepe");
+//pepe();
+
+//? ----Call | Apply | Bind ----
+this.lugar = "Contexto global";
+
+function saludar(saludo, aQuien) {
+  console.log(`${saludo} ${aQuien} desde el ${this.lugar}`);
+}
+
+//saludar();
+
+const obj = {
+  lugar: "Contexto Objeto",
+};
+
+//saludar.call(obj, "Hola", "Lalo");
+//note: en caso de usar null regresará al contexto global
+//saludar.call(null, "Hola", "Lalo2");
+//note: tomará el contexto donde se esta llamando, en este caso el scope es el global
+//saludar.call(this, "Hola", "Lalo3");
+//note: Lo mismo para apply
+//saludar.apply(obj, ["Adios", "Lalo"]);
+
+const person = {
+  nombre: "pepe",
+  saludar: function () {
+    console.log(`Hola ${this.nombre}`);
+  },
+};
+
+//person.saludar();
+
+const otraperson = {
+  saludar: person.saludar.bind(person),
+};
+
+//otraperson.saludar();
