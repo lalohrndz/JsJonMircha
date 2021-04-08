@@ -216,7 +216,7 @@ const funcAsynExp = async () => {
   } */
 };
 
-funcAsynExp();
+/* funcAsynExp();
 
 //? Generators
 //note: Al agregar el * al lado de la palabra function js lo reconoce como generador.
@@ -243,13 +243,13 @@ function square(valor) {
     return console.log({ valor, resultado: valor * valor });
   }, Math.random() * 1000);
 
-  /*   return {
+  return {
     valor,
     resultado: valor * valor,
-  }; */
-}
+  };
+} */
 
-function* generator() {
+/* function* generator() {
   console.log("Inicio generator");
   yield square(0);
   yield square(1);
@@ -263,4 +263,79 @@ function* generator() {
 let gen = generator();
 for (let y of gen) {
   console.log(y);
+} */
+
+const persona = {
+  nombre: "",
+  apellido: "",
+  edad: 0,
+};
+
+const manejador = {
+  set(obj, prop, valor) {
+    //note:Cuando agregamos que el objeto en cuestión agregue el valor a la propiedad es cuendo el set realiza la validación del proxi principal
+    //?En caso de no querer que se agreguen nuevas propiedades debemos de definirlo con un condicionador:
+
+    if (Object.keys(obj).indexOf(prop) === -1) {
+      return console.error(
+        `La propiedad ${prop} no existe en el objeto persona`
+      );
+    }
+
+    //?Se valida que el nombre y el apellido cumpla con las caracteristicas del regex
+    if (
+      (prop === "nombre" || prop === "apellido") &&
+      !/^[A-Za-zÑñÁáÉéÍíÓóÚú\s]+$/g.test(valor)
+    ) {
+      return console.error(
+        `La propiedad ${prop} sólo acepta letras y espacios en blanco`
+      );
+    }
+
+    obj[prop] = valor;
+  },
+};
+
+/* const jon = new Proxy(persona, manejador);
+jon.nombre = "pepe";
+jon.apellido = "pastor";
+jon.edad = 24;
+console.log(jon); */
+
+//note:Si agregamos una nueva propiedad el proxi la agrega también al objeto original (persona)
+
+/* jon.twitter = "@jonteitter";
+console.log(persona);
+console.log(jon); */
+
+const objUsuarios = {};
+const usuarios = ["Jon", "irma", "mike", "Karla", "Kenai"];
+
+//note:Asiganmos un ID dinámico a cada valor de un objeto
+usuarios.forEach((usuario, index) => (objUsuarios[`id_${index}`] = usuario));
+//console.log(objUsuarios);
+
+console.log(this);
+console.log(window);
+this.nombre = "Contexto global";
+
+function imprimir() {
+  console.log(this);
 }
+
+/* imprimir(); */
+
+const obj = {
+  nombre: "Contexto objeto",
+  imprimir: function () {
+    console.log(this.nombre);
+  },
+};
+
+//obj.imprimir();
+
+const obj2 = {
+  nombre: "contexto obj 2",
+};
+
+//obj2.imprimir();

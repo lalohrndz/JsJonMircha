@@ -192,13 +192,13 @@ const iterable2 = "Hola mundo";
 //note: En esta línea accedemos al iterador del iterable
 const iterador = iterable[Symbol.iterator]();
 const iterador2 = iterable2[Symbol.iterator]();
-console.log(iterador);
-console.log(iterador2);
+/* console.log(iterador);
+console.log(iterador2); */
 
 let next = iterador.next();
 
 while (!next.done) {
-  console.log(next.value);
+  //console.log(next.value);
   //note: Se debe de hacer una re-asignación de next hacía el siguiente valor de next para que no sea un infinite loop
   next = iterador.next();
 }
@@ -206,7 +206,47 @@ while (!next.done) {
 let next2 = iterador2.next();
 
 while (!next2.done) {
-  console.log(next2.value);
+  //console.log(next2.value);
   next2 = iterador2.next();
 }
 //note: Con el iterador next también podemos trabajar con los set | maps | symbols (para valores únicos)
+
+//? ------Proxies-------
+
+const individuo = {
+  nombre: "",
+  apellido: "",
+  edad: 0,
+};
+
+const manejador = {
+  set(obj, prop, valor) {
+    if (Object.keys(obj).indexOf(prop) === -1) {
+      //return console.error(`La popiedad ${prop} no existe`);
+    }
+    obj[prop] = valor;
+  },
+};
+
+const lalo = new Proxy(individuo, manejador);
+lalo.nombre = "lalo";
+lalo.apellido = "pastor";
+lalo.edad = 24;
+lalo.twitter = "@lalo.pastor";
+//console.log(lalo);
+
+//console.log(individuo);
+
+//? Propiedades dinámicas
+
+let aleatorio = Math.round(Math.random() * 100 + 5);
+const objUsuarios = {
+  propiedad: "valor",
+  [`id_${aleatorio}`]: "valor Aleatorio",
+};
+const usuarios = ["Irma", "miguel", "lalo", "dul"];
+
+usuarios.forEach(
+  (usuario, index) => (objUsuarios[`id_${index + 1}`] = usuario)
+);
+//console.log(objUsuarios);
