@@ -1,0 +1,11 @@
+const lalo = {
+  cadena: "lalo",
+  numero: 24,
+  booleano: true,
+  arreglo: ["Correr", "caminar", "trotar"],
+  objeto: {
+    twitter: "@eddPstr",
+    email: "edo.pstr@gmail.com",
+  },
+  nulo: null,
+};
