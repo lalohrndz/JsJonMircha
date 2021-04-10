@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <h2>Web API</h2>
+    <h4>DOM (Document Object Model)</h4>
+    <h4>BOM (Browser Objet Model)</h4>
+    <h4>CSSOM (CSS Object Model)</h4>
+
+    <ul>
+      <li>Eventos</li>
+      <li>Forms</li>
+      <li>AJAX - Fetch</li>
+      <li>History</li>
+      <li>Web Storage</li>
+      <li>Geolocation</li>
+      <li>Drag & Drop</li>
+      <li>Indexed DB</li>
+      <li>Canvas</li>
+      <li>MartchMEdia</li>
+      <li>And more...</li>
+    </ul>
+
+    <a href="https://jonmircha.com/dom">Recurso JonMircha DOM</a>
+
+    <script src="Js/dom.js"></script>
+    <script>
+      let texto =
+        "Hola, este es el uso del SpeechSynthesis en el navegador. La clase es de jonmircha, el código de pepe";
+
+      const hablar = (texto) => {
+        speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+      };
+
+      //hablar(texto);
+    </script>
+  </body>
+</html>
