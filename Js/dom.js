@@ -32,3 +32,43 @@ console.log(document.querySelector(".card"));
 console.log(document.querySelectorAll(".card"));
 console.log(document.querySelectorAll(".card")[2]);
 console.log(document.querySelectorAll("#menu li"));
+console.clear();
+
+//? Atributos y data-attributes
+console.log(document.documentElement.lang);
+console.log(document.documentElement.getAttribute("lang"));
+console.log(document.querySelector(".link-dom").href);
+console.log(document.querySelector(".link-dom").getAttribute("href"));
+
+document.documentElement.lang = "en";
+console.log(document.documentElement.lang);
+
+document.documentElement.setAttribute("lang", "es-MX");
+console.log(document.documentElement.lang);
+
+//note: como forma de distinguir se agrega un $ antes del nombre de la variable para identificar las variables que contienen símbolos del DOM
+const $linkDOM = document.querySelector(".link-dom");
+
+$linkDOM.setAttribute("target", "_blank");
+//note: se especifica la propiedad rel="noopener" para indicar que no hay relación entre la página origen y la página destino de la etiqueta ancla
+$linkDOM.setAttribute("rel", "noopener");
+$linkDOM.setAttribute("href", "https://www.google.com");
+console.log($linkDOM.hasAttribute("rel"));
+$linkDOM.removeAttribute("rel");
+console.log($linkDOM.hasAttribute("rel"));
+
+//? Data-Attributes
+console.log($linkDOM.getAttribute("data-description"));
+console.log($linkDOM.dataset);
+console.log($linkDOM.dataset.description);
+
+console.log($linkDOM.dataset.id);
+$linkDOM.setAttribute("data-id", "2");
+console.log($linkDOM.dataset.id);
+
+$linkDOM.dataset.id = "3";
+console.log($linkDOM.dataset.id);
+
+console.log($linkDOM.hasAttribute("data-id"));
+$linkDOM.removeAttribute("data-id");
+console.log($linkDOM.hasAttribute("data-id"));
