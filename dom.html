@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOM</title>
+    <style>
+      /*Si se necesita que las variables se encuentren en todo el documento se deben de especificar en root*/
+      :root {
+        --yellow-color: #f7df1e;
+        --dark-color: #222;
+      }
+    </style>
   </head>
   <body>
     <h2>Web API</h2>
@@ -51,7 +58,12 @@
     </nav>
 
     <input type="text" name="nombre" placeholder="Nombre" />
-    <a class="link-dom" href="dom.html" data-description="Document Object Model" data-id="1"
+    <a
+      class="link-dom"
+      href="dom.html"
+      data-description="Document Object Model"
+      data-id="1"
+      style="background-color: antiquewhite"
       >DOM</a
     >
 
@@ -78,7 +90,7 @@
       </figure>
     </section>
 
-    <a href="https://jonmircha.com/dom">Recurso JonMircha DOM</a>
+    <a href="https://jonmircha.com/dom" rel="noopener">Recurso JonMircha DOM</a>
 
     <script src="Js/dom.js"></script>
     <script>
