@@ -165,7 +165,7 @@ console.clear();
 
 //note: DOM Traversing - enfocado a etiquetas html
 
-$cards = document.querySelector(".cards");
+/* $cards = document.querySelector(".cards");
 //?Accede a los elementos hijos
 console.log($cards.children);
 //? Se puede acceder a un elemento especfico
@@ -187,4 +187,84 @@ console.log($cards.closest("div"));
 
 console.log($cards.closest("body"));
 
-console.log($cards.children[3].closest("section"));
+console.log($cards.children[3].closest("section")); */
+
+console.clear();
+
+const $figure = document.createElement("figure"),
+  $img = document.createElement("img"),
+  $figcaption = document.createElement("figcaption"),
+  $figcaptionText = document.createTextNode("Animals"),
+  $cards = document.querySelector(".cards"),
+  $figure2 = document.createElement("figure");
+
+$img.setAttribute("src", "https://placeimg.com/200/200/animals");
+$img.setAttribute("alt", "Animals");
+$figure.classList.add("card");
+
+$figcaption.appendChild($figcaptionText);
+$figure.appendChild($img);
+$figure.appendChild($figcaption);
+$cards.appendChild($figure);
+
+$figure2.innerHTML = `
+<img src="https://placeimg.com/200/200/people" alt="People"/>
+<figcaption>People</figcaption>
+`;
+
+$figure2.classList.add("card");
+$cards.appendChild($figure2);
+
+const estaciones = ["Primavera", "Otoño", "Verano", "Invierno"];
+$ul = document.createElement("ul");
+
+document.write("Estaciones del año");
+document.body.appendChild($ul);
+
+estaciones.forEach((el) => {
+  const $li = document.createElement("li");
+  $li.textContent = el;
+  $ul.appendChild($li);
+});
+
+const continentes = ["Africa", "America", "Asia", "Europa", "Oceanía"];
+$ul2 = document.createElement("ul");
+
+document.write("<h3>Continentes del mundo</h3>");
+document.body.appendChild($ul2);
+
+$ul2.innerHTML = "";
+
+continentes.forEach((el) => {
+  //?Debemos de agregar el sumando para que no sobreescriba el último elemento plasmado
+  $ul2.innerHTML += `<li>${el}</li>`;
+});
+
+const meses = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
+];
+
+//note: Esta es la forma que más optimiza la carga de elementos al DOM puesto que se le agregan los elementos al fragmento y se realiza solo una inserción al DOM
+const $ul3 = document.createElement("ul");
+const $fragment = document.createDocumentFragment();
+
+meses.forEach((el) => {
+  const $li = document.createElement("li");
+  $li.textContent = el;
+  $fragment.appendChild($li);
+  $ul3.appendChild($li);
+});
+
+document.write("Meses del año");
+document.body.appendChild($ul3);
