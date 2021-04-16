@@ -8,8 +8,37 @@
     <style>
       /*Si se necesita que las variables se encuentren en todo el documento se deben de especificar en root*/
       :root {
-        --yellow-color: #f7df1e;
+        --light-color: #e9e9e9;
         --dark-color: #222;
+      }
+
+      .cards {
+        border: thin solid var(--dark-color);
+        padding: 1rem;
+      }
+
+      .card {
+        display: inline-block;
+      }
+
+      .card-figcaption {
+        padding: 1rem;
+      }
+
+      .rotate-45 {
+        transform: rotate(45deg);
+      }
+
+      .rotate-135 {
+        transform: rotate(135deg);
+      }
+
+      .opacity-80 {
+        opacity: 8;
+      }
+
+      .sepia {
+        filter: sepia(1);
       }
     </style>
   </head>

@@ -93,16 +93,98 @@ const $html = document.documentElement,
   $body = document.body;
 
 let varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
-let varYellowColor = getComputedStyle($html).getPropertyValue("--yellow-color");
+let varLightColor = getComputedStyle($html).getPropertyValue("--light-color");
 
-console.log(varDarkColor, varYellowColor);
+console.log(varDarkColor, varLightColor);
 
-$body.style.backgroundColor = varDarkColor;
-$body.style.color = varYellowColor;
+$body.style.backgroundColor = varLightColor;
+$body.style.color = varDarkColor;
 
 $html.style.setProperty("--dark-color", "#000");
 varDarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
 
-$body.style.setProperty("background-color", varDarkColor);
+$body.style.setProperty("background-color", varLightColor);
+
+//regreso al light color
+$body.style.setProperty("--light-color", "#e9e9e9");
+varLightColor = getComputedStyle($html).getPropertyValue("--light-color");
 
 console.clear();
+
+const $card = document.querySelector(".card");
+console.log($card);
+console.log($card.classList);
+console.log($card.className);
+console.log($card.classList.contains("rotate-45"));
+
+$card.classList.add("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+
+$card.classList.remove("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+
+$card.classList.toggle("rotate-45");
+console.log($card.classList.contains("rotate-45"));
+$card.classList.toggle("rotate-45");
+
+$card.classList.toggle("rotate-45");
+$card.classList.replace("rotate-45", "rotate-135");
+
+$card.classList.add("opacity", "sepia");
+$card.classList.remove("opacity", "sepia");
+
+$card.classList.toggle("rotate-135");
+console.clear();
+
+const $whatIsDOM = document.getElementById("que-es");
+let text = `
+<p>
+El modelo de Objetos del Documento (<b><i>DOM - Document Objet Model </i></b>) es una API para documentos HTML y XML
+</p>
+
+<p>
+Éste proveé una representación estructural del documento, permitiendo modificar su contenido y presentación visual mediante código JS
+</p>
+
+<p>
+<mark>El DOM no es parte de la especificación de JavaScript, es una API para los navegadores.</mark>
+</p>
+
+`;
+
+//? innerText no forma parte del standard
+$whatIsDOM.innerText = text;
+//?textContent forma parte del standard pero no renderiza a HTML las etiquetas de las template strings
+$whatIsDOM.textContent = text;
+//? innerHTML renderiza el html
+$whatIsDOM.innerHTML = text;
+//? outerHTML reemplaza la etiqueta para una mejor semántica
+$whatIsDOM.outerHTML = text;
+
+console.clear();
+
+//note: DOM Traversing - enfocado a etiquetas html
+
+$cards = document.querySelector(".cards");
+//?Accede a los elementos hijos
+console.log($cards.children);
+//? Se puede acceder a un elemento especfico
+console.log($cards.children[2]);
+//? accede al nodo apdre
+console.log($cards.parentElement);
+//? accede al primer hijo del nodo (sin importar si es nodo de elemento o no)
+console.log($cards.firstChild);
+//? accede al primer hijo del tipo de nodo elemento
+console.log($cards.firstElementChild);
+//? accede al ultimo elemento del nodo tipo elemento
+console.log($cards.lastElementChild);
+//? accede al nodo del tipo elemento anterior
+console.log($cards.previousElementSibling);
+//? accede al nodo siguiente del tipo elemento
+console.log($cards.nextElementSibling);
+//? busca el elemento más cercano del tipo que se ingrese
+console.log($cards.closest("div"));
+
+console.log($cards.closest("body"));
+
+console.log($cards.children[3].closest("section"));
