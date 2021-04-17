@@ -263,8 +263,49 @@ meses.forEach((el) => {
   const $li = document.createElement("li");
   $li.textContent = el;
   $fragment.appendChild($li);
-  $ul3.appendChild($li);
 });
 
 document.write("Meses del año");
+//aqui se hace la inserción al fragmento del dom
+$ul3.appendChild($fragment);
+
 document.body.appendChild($ul3);
+
+//note: **DOM templates
+const $cards2 = document.querySelector(".cards"),
+  $template = document.querySelector("#template-card").content,
+  $fragment2 = document.createDocumentFragment(),
+  cardContent = [
+    {
+      title: "Tecnología",
+      img: "https://placeimg.com/200/200/people",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/animals",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/tech",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/arch",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/nature",
+    },
+  ];
+
+cardContent.forEach((el) => {
+  $template.querySelector("img").setAttribute("src", el.img);
+  $template.querySelector("img").setAttribute("alt", el.title);
+  $template.querySelector("figcaption").textContent = el.title;
+
+  //? El importNode lo que hace es que "clona" un nodo del documento, en caso de que el segundo parametro sea true va a copiar toda la estructura, en caso de que sea false solamente copia la primer etiqueta de apertura y cierre
+  let $clone = document.importNode($template, true);
+  $fragment2.appendChild($clone);
+});
+
+$cards2.appendChild($fragment2);

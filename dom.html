@@ -19,6 +19,10 @@
 
       .card {
         display: inline-block;
+        background-color: #222;
+        color: aliceblue;
+        text-align: center;
+        padding: 1rem;
       }
 
       .card-figcaption {
@@ -99,27 +103,34 @@
     <section class="cards">
       <figure class="card">
         <img src="https://placeimg.com/200/200/tech" alt="Tech" />
-        <figcaption>Tech</figcaption>
+        <figcaption class="card-figcaption">Tech</figcaption>
       </figure>
       <figure class="card">
         <img src="https://placeimg.com/200/200/animals" alt="Animals" />
-        <figcaption>Animals</figcaption>
+        <figcaption class="card-figcaption">Animals</figcaption>
       </figure>
       <figure class="card">
         <img src="https://placeimg.com/200/200/people" alt="People" />
-        <figcaption>People</figcaption>
+        <figcaption class="card-figcaption">People</figcaption>
       </figure>
       <figure class="card">
         <img src="https://placeimg.com/200/200/arch" alt="Arch" />
-        <figcaption>Architecture</figcaption>
+        <figcaption class="card-figcaption">Architecture</figcaption>
       </figure>
       <figure class="card">
         <img src="https://placeimg.com/200/200/nature" alt="Nature" />
-        <figcaption>Nature</figcaption>
+        <figcaption class="card-figcaption">Nature</figcaption>
       </figure>
     </section>
 
     <a href="https://jonmircha.com/dom" rel="noopener">Recurso JonMircha DOM</a>
+
+    <template id="template-card">
+      <figure class="card">
+        <img />
+        <figcaption class="card-figcaption"></figcaption>
+      </figure>
+    </template>
 
     <script src="Js/dom.js"></script>
     <script>
