@@ -352,7 +352,38 @@ $newCard3.classList.add("card");
 
 $newCard3.insertAdjacentHTML("beforeend", $contentCard);
 $newCard3.querySelector("figcaption").insertAdjacentText("afterbegin", "Any");
-$cards3.insertAdjacentElement("afterbegin", $newCard3);
+//$cards3.insertAdjacentElement("afterbegin", $newCard3);
 
 //note: Lo que hace el método prepend agrga como hijo primero
 $cards3.prepend($newCard3);
+
+//note: agrega el elemento antes del elemento padre
+$cards3.before($newCard3);
+
+//note: agrega el elemento como siguiente en la lista
+$cards3.append($newCard3);
+
+//note: grega el elemento después del elemento padre
+$cards3.after($newCard3);
+
+//note: ****Manejador de eventos****
+
+function holaMundo() {
+  alert("hola mundo");
+  console.log(event);
+}
+
+const $eventoSemantico = document.getElementById("evento-semantico");
+
+//note: Cuando defines un evento de forma semantica debe de ir sin los parentesis por que si los lleva activa el evento al inicio de la carga de la página
+$eventoSemantico.onclick = holaMundo;
+
+const $eventoMultiple = document.getElementById("evento-multiple");
+$eventoMultiple.addEventListener("click", holaMundo);
+
+$eventoMultiple.addEventListener("click", (e) => {
+  alert("manejador de eventos múltiples");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+});
