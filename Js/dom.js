@@ -309,3 +309,50 @@ cardContent.forEach((el) => {
 });
 
 $cards2.appendChild($fragment2);
+
+$newCard = document.createElement("figure");
+
+$newCard.innerHTML = `
+  <img src="https://placeimg.com/200/200/any" alt="any">
+  <figcaption>Any<figcaption>
+`;
+
+$newCard.classList.add("card");
+
+$cards.replaceChild($newCard, $cards2.children[1]);
+
+//? Nuevos métodos
+
+/* .insertAdjacent
+--Hace refencia a un nodo del tipo elemento (etiqueta html)
+.insertAdjacentElement(position,el)
+
+--Texto que este en formato HTML
+.insertAdjacentHTML(position,html)
+
+--Texto para html
+.insertAdjacentText(position,text)
+
+ --Posiciones--
+
+ beforebegin(hermano anterior)
+ afterbegin(primer hijo)
+ beforeend(ultimo hijo)
+ afterend(hermano siguiente) */
+
+const $cards3 = document.querySelector(".cards"),
+  $newCard3 = document.createElement("figure");
+
+let $contentCard = `
+  <img src="https://placeimg.com/200/200/any" alt="any">
+  <figcaption><figcaption>
+`;
+
+$newCard3.classList.add("card");
+
+$newCard3.insertAdjacentHTML("beforeend", $contentCard);
+$newCard3.querySelector("figcaption").insertAdjacentText("afterbegin", "Any");
+$cards3.insertAdjacentElement("afterbegin", $newCard3);
+
+//note: Lo que hace el método prepend agrga como hijo primero
+$cards3.prepend($newCard3);
