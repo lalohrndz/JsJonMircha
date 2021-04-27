@@ -400,6 +400,7 @@ const removerDobleClick = (e) => {
   alert(`Removiendo el evento del tipo ${e.type}`);
   console.log(e);
   $eventoRemover.removeEventListener("dblclick", removerDobleClick);
+  $eventoRemover.disabled = true;
 };
 
 $eventoRemover.addEventListener("dblclick", removerDobleClick);
