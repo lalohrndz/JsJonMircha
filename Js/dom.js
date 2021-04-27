@@ -375,6 +375,10 @@ function holaMundo() {
 
 const $eventoSemantico = document.getElementById("evento-semantico");
 
+function saludar(nombre = "Desconocido/a") {
+  alert(`Hola ${nombre}`);
+}
+
 //note: Cuando defines un evento de forma semantica debe de ir sin los parentesis por que si los lleva activa el evento al inicio de la carga de la página
 $eventoSemantico.onclick = holaMundo;
 
@@ -387,3 +391,15 @@ $eventoMultiple.addEventListener("click", (e) => {
   console.log(e.type);
   console.log(e.target);
 });
+
+const $eventoRemover = document.getElementById("evento-remover");
+
+$eventoMultiple.addEventListener("click", (e) => saludar("Lalo"));
+
+const removerDobleClick = (e) => {
+  alert(`Removiendo el evento del tipo ${e.type}`);
+  console.log(e);
+  $eventoRemover.removeEventListener("dblclick", removerDobleClick);
+};
+
+$eventoRemover.addEventListener("dblclick", removerDobleClick);
