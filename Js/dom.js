@@ -418,24 +418,37 @@ function flujoEventos(e) {
   e.stopPropagation();
 }
 
-$divsEventos.forEach((div) => {
-  //note: Fase de burbuja - Va desde el elemento más interno al más externo
-  //div.addEventListener("click", flujoEventos);
+//$divsEventos.forEach((div) => {
+//note: Fase de burbuja - Va desde el elemento más interno al más externo
+//div.addEventListener("click", flujoEventos);
 
-  //note: Fase de captura - va desde el elemento más externo al más interno
-  //div.addEventListener("click", flujoEventos, true);
+//note: Fase de captura - va desde el elemento más externo al más interno
+//div.addEventListener("click", flujoEventos, true);
 
-  div.addEventListener("click", flujoEventos, {
-    capture: false,
-    //note: Ejecuta el elemento una sola vez
-    once: false,
-  });
-});
+//div.addEventListener("click", flujoEventos, {
+// capture: false,
+//note: Ejecuta el elemento una sola vez
+//  once: false,
+//});
+//});
 
 const $linkEventos = document.querySelector(".eventos-flujo a");
 
-$linkEventos.addEventListener("click", (e) => {
+/* $linkEventos.addEventListener("click", (e) => {
   alert("holaaaa");
   e.preventDefault();
   e.stopPropagation();
+}); */
+
+document.addEventListener("click", (e) => {
+  console.log("clic en ", e.target);
+
+  if (e.target.matches(".eventos-flujo div")) {
+    flujoEventos(e);
+  }
+
+  if (e.target.matches(".eventos-flujo a")) {
+    alert("addEventListener directo en docuement");
+    e.preventDefault();
+  }
 });
