@@ -404,3 +404,38 @@ const removerDobleClick = (e) => {
 };
 
 $eventoRemover.addEventListener("dblclick", removerDobleClick);
+
+const $divsEventos = document.querySelectorAll(".eventos-flujo div");
+
+console.log($divsEventos);
+
+function flujoEventos(e) {
+  console.log(
+    `Hola, te saluda ${this.className}, el click lo logró ${e.target.className}`
+  );
+
+  //note: con el método de stopPropagation se detiene la propagación del evento recibido
+  e.stopPropagation();
+}
+
+$divsEventos.forEach((div) => {
+  //note: Fase de burbuja - Va desde el elemento más interno al más externo
+  //div.addEventListener("click", flujoEventos);
+
+  //note: Fase de captura - va desde el elemento más externo al más interno
+  //div.addEventListener("click", flujoEventos, true);
+
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+    //note: Ejecuta el elemento una sola vez
+    once: false,
+  });
+});
+
+const $linkEventos = document.querySelector(".eventos-flujo a");
+
+$linkEventos.addEventListener("click", (e) => {
+  alert("holaaaa");
+  e.preventDefault();
+  e.stopPropagation();
+});
