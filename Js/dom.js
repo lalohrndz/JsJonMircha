@@ -440,7 +440,7 @@ const $linkEventos = document.querySelector(".eventos-flujo a");
   e.stopPropagation();
 }); */
 
-document.addEventListener("click", (e) => {
+/* document.addEventListener("click", (e) => {
   console.log("clic en ", e.target);
 
   if (e.target.matches(".eventos-flujo div")) {
@@ -451,4 +451,120 @@ document.addEventListener("click", (e) => {
     alert("addEventListener directo en docuement");
     e.preventDefault();
   }
+}); */
+
+window.addEventListener("resize", (e) => {
+  /*   console.clear();
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  console.log(window.outerHeight);
+  console.log(window.outerWidth);
+  console.log(e); */
 });
+
+window.addEventListener("scroll", (e) => {
+  /*   console.clear();
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e); */
+});
+
+window.addEventListener("load", (e) => {
+  /*   console.clear();
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e); */
+});
+
+//note: El evento DOMContentLoad tiene una mayor rapides de carga que el evento load que esta arriba puesto que este se ejecuta cuando el documento html se ha cargado a diferencia que el evento de load que se dispara una vez que la página cargue (css, scripts, etc)
+document.addEventListener("DOMContentLoad", (e) => {
+  /*   console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e); */
+});
+console.clear();
+
+const $btnAbrirVentana = document.getElementById("abrir-ventana"),
+  $btnCerrarVentana = document.getElementById("cerrar-ventana"),
+  $btnImprimirVentana = document.getElementById("imprimir-ventana");
+
+let ventana;
+
+$btnAbrirVentana.addEventListener("click", (e) => {
+  ventana = open("https://www.google.com");
+});
+
+$btnCerrarVentana.addEventListener("click", (e) => {
+  ventana.close();
+});
+
+$btnImprimirVentana.addEventListener("click", (e) => {
+  print();
+});
+
+
+//note: Objeto URL (Location)
+console.log("******Objeto URL (Location)*******");
+
+console.log("--Location--");
+console.log(location);
+console.log("--Location Origin--");
+console.log(location.origin);
+console.log("--Location Protocol--");
+console.log(location.protocol);
+console.log("--Location Host--");
+console.log(location.host);
+console.log("--Location HostName--");
+console.log(location.hostname);
+console.log("--Location Port--");
+console.log(location.port);
+console.log("--Location Href--");
+console.log(location.href);
+console.log("--Location Hash--");
+console.log(location.hash);
+console.log("--Location Search--");
+console.log(location.search);
+console.log("--Location PathName--");
+console.log(location.pathname);
+
+
+console.log("------Historial------");
+
+console.log("---History---");
+console.log(history);
+//note: Para regresar una página del navegador se usa el método back
+history.back();
+
+//note: Para ir una página hacia adelante en el historial se usa el método forward
+history.forward();
+
+//?Para moverse más allá de una página debemos de agregar entre parentesis el número de páginas a mover
+//? history.back(2);
+//? history.forward(3);
+
+//note: De igual forma se puede usar el método go tomando en cuenta la página acutal, para moverse una página después se aplicarian números negarivos
+//note y para regresarse en el historial se usarian números negativos
+console.log("---Histort Go-");
+//history.go(1);
+
+console.log("---------Objeto navegador-------------");
+console.log("----Navigator----");
+console.log(navigator);
+console.log("----Navigator Connection----");
+console.log(navigator.connection);
+console.log("----Navigator geolocation----");
+console.log(navigator.geolocation);
+console.log("----Navigator media devices----");
+console.log(navigator.mediaDevices);
+console.log("-----Navigator mime types-----"); 
+console.log(navigator.mimeTypes);
+console.log("----Navigator online----");
+console.log(navigator.onLine);
+console.log("----Navigator service worker----");
+console.log(navigator.serviceWorker);
+console.log("-----Navigator storage------");
+console.log(navigator.storage);
+console.log("----Navigator usb----");
+console.log(navigator.usb);
+console.log("----Navigator user agent----");
+console.log(navigator.userAgent);

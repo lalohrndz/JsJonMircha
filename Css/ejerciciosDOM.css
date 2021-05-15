@@ -1,0 +1,32 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    font-family: Montserrat;
+}
+
+nav{
+    background-color:gold;
+    padding: 10px 10px;
+}
+
+h1{
+    margin: 0;
+    text-align: center;
+}
+
+#section1{
+    text-align: center;
+}
+
+#burger{
+    position: fixed;
+    margin:2em;
+    display: flex;
+    flex-direction:row-reverse;
+    background-color: goldenrod;
+    border-radius: 50%;
+}
+
+#btn-hamburger{
+    
+}
